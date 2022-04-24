@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBOutlet weak var winningLine: UIImageView!
     @IBOutlet weak var label: UILabel!
     var counter = 0
     var activePlayer = "X"
@@ -43,10 +44,12 @@ class ViewController: UIViewController {
             }
         }
 
+        var win = -1;
         for position in winPositions {
             if (gameState[position[0]] == gameState[position[1]] &&
                                     gameState[position[1]] == gameState[position[2]] && gameState[position[0]] != " ") {
                 gameActive = false
+                win = winPositions.firstIndex(of: position) ?? -1
 
                 if (gameState[position[0]] == "X") {
                     label.text = "X WON!"
@@ -71,6 +74,38 @@ class ViewController: UIViewController {
             
             playAgainBtn.isHidden = false
         }
+        
+        if (win >= 0) {
+            winningLine.isHidden = false
+            switch (win) {
+                case 0:
+                    winningLine.image = UIImage(named:"mark6.png")
+                    break
+                case 1:
+                    winningLine.image = UIImage(named:"mark7.png")
+                    break
+                case 2:
+                    winningLine.image = UIImage(named:"mark8.png")
+                    break
+                case 3:
+                    winningLine.image = UIImage(named:"mark3.png")
+                    break
+                case 4:
+                    winningLine.image = UIImage(named:"mark4.png")
+                    break
+                case 5:
+                    winningLine.image = UIImage(named:"mark5.png")
+                    break
+                case 6:
+                    winningLine.image = UIImage(named:"mark1.png")
+                    break
+                case 7:
+                    winningLine.image = UIImage(named:"mark2.png")
+                    break
+            default:
+                break
+            }
+        }
 }
     
     @IBOutlet weak var playAgainBtn: UIButton!
@@ -80,6 +115,7 @@ class ViewController: UIViewController {
         activePlayer = "X"
         gameActive = true
         playAgainBtn.isHidden = true
+        winningLine.isHidden = true
         label.text = "X PLAYS"
         label.textColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1.0) /* #ff0000 */
 
@@ -87,6 +123,5 @@ class ViewController: UIViewController {
             let button = view.viewWithTag(i) as! UIButton
             button.setImage(UIImage(named: "empty.png"), for: UIControl.State())
         }
-        
     }
 }
