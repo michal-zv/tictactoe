@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  tictactoe
 //
-//  Created by Michal on 23/04/2022.
+//  Created by Michal on 24/04/2022.
 //  Copyright © 2022 Michal. All rights reserved.
 //
 
